@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "599750894029",
+    "project_id": "asparfood6am",
+    "storage_bucket": "asparfood6am.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599750894029:android:ae2a0400ded392b4f66484",
+        "android_client_info": {
+          "package_name": "com.asparfood.group"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599750894029-e4rb5apm7veabd8c3ua8k5v6kcedpcau.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAvJeiuxg1OqhYobr1zEu0T3smoMUSl7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599750894029-e4rb5apm7veabd8c3ua8k5v6kcedpcau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
