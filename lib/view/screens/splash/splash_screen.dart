@@ -96,11 +96,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 }
               } else {
                 if (Get.find<SplashController>().showIntro()) {
-                  if(AppConstants.languages.length > 1) {
-                    Get.offNamed(RouteHelper.getLanguageRoute('splash'));
-                  }else {
+                  //if(AppConstants.languages.length > 1) {
+                  //  Get.offNamed(RouteHelper.getLanguageRoute('splash'));
+                  //}else {
                     Get.offNamed(RouteHelper.getOnBoardingRoute());
-                  }
+                 // }
                 } else {
                   Get.offNamed(RouteHelper.getSignInRoute(RouteHelper.splash));
                 }
@@ -126,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: splashController.hasConnection ? Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(Images.logo, width: 200),
+              Image.asset(Images.logo, width: 300,height: 300,),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
               // Text(AppConstants.APP_NAME, style: robotoMedium.copyWith(fontSize: 25)),
             ],

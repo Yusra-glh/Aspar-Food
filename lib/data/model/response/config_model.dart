@@ -39,8 +39,9 @@ class ConfigModel {
   double parcelMinimumShippingCharge;
   ModuleModel module;
   ModuleConfig moduleConfig;
-  LandingPageSettings landingPageSettings;
+  List<LandingPageSettings> landingPageSettings;
   List<SocialMedia> socialMedia;
+  
   String footerText;
   LandingPageLinks landingPageLinks;
   int loyaltyPointExchangeRate;
@@ -171,9 +172,13 @@ class ConfigModel {
         : null;
     parcelPerKmShippingCharge = json['parcel_per_km_shipping_charge'].toDouble();
     parcelMinimumShippingCharge = json['parcel_minimum_shipping_charge'].toDouble();
-    landingPageSettings = json['landing_page_settings'] != null
-        ? LandingPageSettings.fromJson(json['landing_page_settings'])
-        : null;
+      if (json['landing_page_settings'] != null) {
+      landingPageSettings = <LandingPageSettings>[];
+      json['landing_page_settings'].forEach((v) {
+        landingPageSettings.add(new LandingPageSettings.fromJson(v));
+      });
+    }
+
     if (json['social_media'] != null) {
       socialMedia = <SocialMedia>[];
       json['social_media'].forEach((v) {
@@ -255,8 +260,9 @@ class ConfigModel {
     data['parcel_per_km_shipping_charge'] = this.parcelPerKmShippingCharge;
     data['parcel_minimum_shipping_charge'] = this.parcelMinimumShippingCharge;
     if (this.landingPageSettings != null) {
-      data['landing_page_settings'] = this.landingPageSettings.toJson();
+      data['landing_page_settings'] = this.landingPageSettings.map((v) => v.toJson()).toList();
     }
+  
     if (this.socialMedia != null) {
       data['social_media'] = this.socialMedia.map((v) => v.toJson()).toList();
     }

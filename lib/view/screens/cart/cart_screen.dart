@@ -146,7 +146,7 @@ class CheckoutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Dimensions.WEB_MAX_WIDTH,
-      padding: ResponsiveHelper.isDesktop(context) ? EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_LARGE) : EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+      padding: ResponsiveHelper.isDesktop(context) ? EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_LARGE) : EdgeInsets.symmetric(vertical:Dimensions.PADDING_SIZE_EXTRA_LARGE*1.7,horizontal: Dimensions.PADDING_SIZE_SMALL),
       child: CustomButton(buttonText: 'proceed_to_checkout'.tr, onPressed: () {
         /*if(Get.find<SplashController>().module == null) {
           showCustomSnackBar('choose_a_module_first'.tr);

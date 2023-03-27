@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sixam_mart/util/styles.dart';
 
 class NewSocialLoginWidget extends StatelessWidget {
   const NewSocialLoginWidget({Key key}) : super(key: key);
@@ -41,7 +42,7 @@ class NewSocialLoginWidget extends StatelessWidget {
                       },
                       child: Container(
                         height: 44,
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width * 0.9,
                         padding:
                             EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
                         decoration: BoxDecoration(
@@ -54,7 +55,23 @@ class NewSocialLoginWidget extends StatelessWidget {
                                 blurRadius: 5)
                           ],
                         ),
-                        child: Image.asset(Images.google),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  right: Dimensions.PADDING_SIZE_SMALL),
+                              child: Image.asset(
+                                Images.google,
+                                height: 30,
+                                width: 20,
+                              ),
+                            ),
+                            Text('Google'.tr,
+                                style: robotoBold.copyWith(
+                                    fontSize: 17, color: Colors.black87)),
+                          ],
+                        ),
                       ),
                     ),
                   )
@@ -66,7 +83,7 @@ class NewSocialLoginWidget extends StatelessWidget {
                         .status
                     ? Dimensions.PADDING_SIZE_SMALL
                     : 0),
-            SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+            SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
             Get.find<SplashController>().configModel.socialLogin[1].status
                 ? InkWell(
                     onTap: () async {
@@ -87,7 +104,7 @@ class NewSocialLoginWidget extends StatelessWidget {
                     },
                     child: Container(
                       height: 44,
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width * 0.9,
                       padding:
                           EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
                       decoration: BoxDecoration(
@@ -100,7 +117,23 @@ class NewSocialLoginWidget extends StatelessWidget {
                               blurRadius: 5)
                         ],
                       ),
-                      child: Image.asset(Images.newFacebook),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                right: Dimensions.PADDING_SIZE_SMALL),
+                            child: Image.asset(
+                              Images.newFacebook,
+                              height: 30,
+                              width: 20,
+                            ),
+                          ),
+                          Text('Facebook'.tr,
+                              style: robotoBold.copyWith(
+                                  fontSize: 17, color: Colors.white)),
+                        ],
+                      ),
                     ),
                   )
                 : SizedBox(),

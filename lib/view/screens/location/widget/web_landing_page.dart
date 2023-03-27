@@ -93,7 +93,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
               ),
               child: CustomImage(
                 image: '${_config.baseUrls.landingPageImageUrl}/${_config.landingPageSettings != null
-                    ? _config.landingPageSettings.topContentImage : ''}',
+                    ? _config.landingPageSettings.first.topContentImage : ''}',
                 height: 270, fit: BoxFit.cover,
               ),
             ))),
@@ -120,9 +120,10 @@ class _WebLandingPageState extends State<WebLandingPage> {
                   SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+                    
                     child: Text(
                       'choose_your_location_to_start_shopping'.tr, textAlign: TextAlign.center,
-                      style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
+                       style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall*0.9),
                     ),
                   ),
                 ]),
@@ -188,7 +189,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
                   )),
                   SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                   CustomButton(
-                    width: 150, height: 60, fontSize: Dimensions.fontSizeDefault,
+                    width: 200, height: 60, fontSize: Dimensions.fontSizeDefault,
                     buttonText: 'set_location'.tr,
                     onPressed: () async {
                       if(_address != null && _controller.text.trim().isNotEmpty) {
@@ -211,7 +212,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
                   ),
                   SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                   CustomButton(
-                    width: 160, height: 60, fontSize: Dimensions.fontSizeDefault,
+                    width: 200, height: 60, fontSize: Dimensions.fontSizeDefault,
                     buttonText: 'pick_from_map'.tr,
                     onPressed: () => Get.toNamed(RouteHelper.getPickMapRoute(
                       widget.route == null ? widget.fromSignUp ? RouteHelper.signUp : RouteHelper.accessLocation : widget.route,
@@ -329,7 +330,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
         (_config.landingPageLinks.appUrlAndroidStatus == '1' || _config.landingPageLinks.appUrlIosStatus == '1') ? Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           CustomImage(
             image: '${_config.baseUrls.landingPageImageUrl}/${_config.landingPageSettings != null
-                ? _config.landingPageSettings.mobileAppSectionImage : ''}',
+                ? _config.landingPageSettings.first.mobileAppSectionImage : ''}',
             width: 500,
           ),
           Column(children: [

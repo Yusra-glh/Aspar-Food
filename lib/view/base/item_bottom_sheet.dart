@@ -701,6 +701,15 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                                                   .module
                                                   .addOn &&
                                               widget.item.addOns.length > 0)
+                                                 if (supplements.isNotEmpty)
+                                            AddonItem(
+                                              itemController: itemController,
+                                              text: "Suppléments aux choix",
+                                              description:
+                                                  "Choisissez vos suppléments",
+                                              originalList: widget.item.addOns,
+                                              addons: supplements,
+                                            ),
                                             if (sauces.isNotEmpty)
                                               AddonItem(
                                                 itemController: itemController,
@@ -720,15 +729,7 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
                                               originalList: widget.item.addOns,
                                               addons: charcuterie,
                                             ),
-                                          if (supplements.isNotEmpty)
-                                            AddonItem(
-                                              itemController: itemController,
-                                              text: "Suppléments aux choix",
-                                              description:
-                                                  "Choisissez vos suppléments",
-                                              originalList: widget.item.addOns,
-                                              addons: supplements,
-                                            ),
+                                       
                                           if (fromage.isNotEmpty)
                                             AddonItem(
                                               itemController: itemController,

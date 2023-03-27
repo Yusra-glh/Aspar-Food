@@ -54,18 +54,18 @@ class SplashController extends GetxController implements GetxService {
     _moduleIndex = 0;
     Response response = await splashRepo.getConfigData();
     bool _isSuccess = false;
-    if(response.statusCode == 200) {
+    if (response.statusCode == 200) {
       _data = response.body;
       _configModel = ConfigModel.fromJson(response.body);
-      if(_configModel.module != null) {
+      if (_configModel.module != null) {
         setModule(_configModel.module);
-      }else if(GetPlatform.isWeb || (loadModuleData && _module != null)) {
+      } else if (GetPlatform.isWeb || (loadModuleData && _module != null)) {
         setModule(GetPlatform.isWeb ? splashRepo.getModule() : _module);
       }
       _isSuccess = true;
-    }else {
+    } else {
       ApiChecker.checkApi(response);
-      if(response.statusText == ApiClient.noInternetMessage) {
+      if (response.statusText == ApiClient.noInternetMessage) {
         _hasConnection = false;
       }
       _isSuccess = false;
@@ -75,11 +75,11 @@ class SplashController extends GetxController implements GetxService {
   }
 
   Future<void> initSharedData() async {
-    if(!GetPlatform.isWeb) {
+    if (!GetPlatform.isWeb) {
       _module = null;
       _cacheModule = splashRepo.getCacheModule();
       splashRepo.initSharedData();
-    }else {
+    } else {
       _module = await splashRepo.initSharedData();
     }
     await setModule(_module, notify: false);
@@ -100,24 +100,25 @@ class SplashController extends GetxController implements GetxService {
   Future<void> setModule(ModuleModel module, {bool notify = true}) async {
     _module = module;
     splashRepo.setModule(module);
-    if(module != null) {
+    if (module != null) {
       splashRepo.setCacheModule(module);
-      _configModel.moduleConfig.module = Module.fromJson(_data['module_config'][module.moduleType]);
+      _configModel.moduleConfig.module =
+          Module.fromJson(_data['module_config'][module.moduleType]);
       Get.find<CartController>().getCartData();
     }
-    if(Get.find<AuthController>().isLoggedIn()) {
+    if (Get.find<AuthController>().isLoggedIn()) {
       Get.find<WishListController>().getWishList();
     }
-    if(notify) {
+    if (notify) {
       update();
     }
   }
 
   Module getModuleConfig(String moduleType) {
     Module _module = Module.fromJson(_data['module_config'][moduleType]);
-    if(moduleType == 'food') {
+    if (moduleType == 'food') {
       _module.newVariation = true;
-    }else {
+    } else {
       _module.newVariation = false;
     }
     return _module;
@@ -128,7 +129,8 @@ class SplashController extends GetxController implements GetxService {
     Response response = await splashRepo.getModules(headers: headers);
     if (response.statusCode == 200) {
       _moduleList = [];
-      response.body.forEach((storeCategory) => _moduleList.add(ModuleModel.fromJson(storeCategory)));
+      response.body.forEach((storeCategory) =>
+          _moduleList.add(ModuleModel.fromJson(storeCategory)));
     } else {
       ApiChecker.checkApi(response);
     }
@@ -136,10 +138,10 @@ class SplashController extends GetxController implements GetxService {
   }
 
   void switchModule(int index, bool fromPhone) async {
-    if(_module == null || _module.id != _moduleList[index].id) {
-        await Get.find<SplashController>().setModule(_moduleList[index]);
-        Get.find<CartController>().getCartData();
-        HomeScreen.loadData(true);
+    if (_module == null || _module.id != _moduleList[index].id) {
+      await Get.find<SplashController>().setModule(_moduleList[index]);
+      Get.find<CartController>().getCartData();
+      HomeScreen.loadData(true);
     }
   }
 
@@ -153,7 +155,7 @@ class SplashController extends GetxController implements GetxService {
     Get.find<BannerController>().getFeaturedBanner();
     // Get.find<CartController>().getCartData();
     getModules();
-    if(Get.find<AuthController>().isLoggedIn()) {
+    if (Get.find<AuthController>().isLoggedIn()) {
       Get.find<LocationController>().getAddressList();
     }
     Get.find<StoreController>().getFeaturedStoreList();
@@ -168,15 +170,17 @@ class SplashController extends GetxController implements GetxService {
     _htmlText = null;
     Response response = await splashRepo.getHtmlText(htmlType);
     if (response.statusCode == 200) {
-      if(htmlType == HtmlType.SHIPPING_POLICY || htmlType == HtmlType.CANCELATION || htmlType == HtmlType.REFUND){
+      if (htmlType == HtmlType.SHIPPING_POLICY ||
+          htmlType == HtmlType.CANCELATION ||
+          htmlType == HtmlType.REFUND) {
         _htmlText = response.body['value'];
-      }else{
+      } else {
         _htmlText = response.body;
       }
 
-      if(_htmlText != null && _htmlText.isNotEmpty) {
+      if (_htmlText != null && _htmlText.isNotEmpty) {
         _htmlText = _htmlText.replaceAll('href=', 'target="_blank" href=');
-      }else {
+      } else {
         _htmlText = '';
       }
     } else {
@@ -193,12 +197,11 @@ class SplashController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       showCustomSnackBar('subscribed_successfully'.tr, isError: false);
       _isSuccess = true;
-    }else {
+    } else {
       ApiChecker.checkApi(response);
     }
     _isLoading = false;
     update();
     return _isSuccess;
   }
-
 }

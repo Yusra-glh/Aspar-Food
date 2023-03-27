@@ -11,18 +11,21 @@ class ConditionCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Checkbox(
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      /*  Checkbox(
         activeColor: Theme.of(context).primaryColor,
         value: authController.acceptTerms,
         onChanged: (bool isChecked) => authController.toggleTerms(),
       ),
-      Text('i_agree_with'.tr, style: robotoRegular),
+      Text('i_agree_with'.tr, style: robotoRegular),*/
+       Text('i_agree_with'.tr, style: robotoRegular),
       InkWell(
-        onTap: () => Get.toNamed(RouteHelper.getHtmlRoute('terms-and-condition')),
+        onTap: () =>
+            Get.toNamed(RouteHelper.getHtmlRoute('terms-and-condition')),
         child: Padding(
           padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
-          child: Text('terms_conditions'.tr, style: robotoMedium.copyWith(color: Colors.blue)),
+          child: Text('terms_conditions'.tr,
+              style: robotoMedium.copyWith(color: Colors.blue)),
         ),
       ),
     ]);
