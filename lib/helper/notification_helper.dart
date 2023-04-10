@@ -33,6 +33,7 @@ class NotificationHelper {
           } else{
             Get.offAllNamed(RouteHelper.getChatRoute(notificationBody: _payload, conversationID: _payload.conversationId, fromNotification: true));
           }
+          
         }
       }catch (e) {}
       return;
